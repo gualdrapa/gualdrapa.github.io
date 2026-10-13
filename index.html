@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="0; url=https://github.com/gualdrapa" />
-    <title>A redirecionar... / Redirecting...</title>
+    <title>Redirecting...</title>
     <style>
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
@@ -13,26 +13,43 @@
         }
         a { color: #0969da; text-decoration: none; font-weight: bold; }
         a:hover { text-decoration: underline; }
-        p { margin: 0.8em 0; }
+        
+        /* Oculta todas as mensagens por predefinição */
+        .lang-msg { display: none; margin: 0.8em 0; }
     </style>
 </head>
 <body>
-    <!-- PT-PT: Português (Portugal) -->
-    <p>🇵🇹 A redirecionar para o perfil do GitHub... Se não for reencaminhado automaticamente, <a href="https://github.com/gualdrapa">clique aqui</a>.</p>
+    <!-- PT-PT: Português -->
+    <p id="msg-pt" class="lang-msg">🇵🇹 A redirecionar para o perfil do GitHub... Se não for reencaminhado automaticamente, <a href="https://github.com/gualdrapa">clique aqui</a>.</p>
 
-    <!-- EN-US / EN-UK: English -->
-    <p>🇬🇧 🇺🇸 Redirecting to the GitHub profile... If you are not redirected automatically, <a href="https://github.com/gualdrapa">click here</a>.</p>
+    <!-- EN: Inglês (Fallback) -->
+    <p id="msg-en" class="lang-msg">🇬🇧 🇺🇸 Redirecting to the GitHub profile... If you are not redirected automatically, <a href="https://github.com/gualdrapa">click here</a>.</p>
 
-    <!-- DE-DE: Deutsch (Deutschland) -->
-    <p>🇩🇪 Weiterleitung zum GitHub-Profil... Wenn Sie nicht automatisch weitergeleitet werden, <a href="https://github.com/gualdrapa">klicken Sie hier</a>.</p>
+    <!-- DE: Alemão -->
+    <p id="msg-de" class="lang-msg">🇩🇪 Weiterleitung zum GitHub-Profil... Wenn Sie nicht automatisch weitergeleitet werden, <a href="https://github.com/gualdrapa">klicken Sie hier</a>.</p>
 
-    <!-- FR-FR: Français (France) -->
-    <p>🇫🇷 Redirection vers le profil GitHub... Si vous n'êtes pas redirigé automatiquement, <a href="https://github.com/gualdrapa">cliquez ici</a>.</p>
+    <!-- FR: Francês -->
+    <p id="msg-fr" class="lang-msg">🇫🇷 Redirection vers le profil GitHub... Si vous n'êtes pas redirigé automatiquement, <a href="https://github.com/gualdrapa">cliquez ici</a>.</p>
 
-    <!-- ES-ES: Español (España) -->
-    <p>🇪🇸 Redirigiendo al perfil de GitHub... Si no se redirige automáticamente, <a href="https://github.com/gualdrapa">haga clic aquí</a>.</p>
+    <!-- ES: Espanhol -->
+    <p id="msg-es" class="lang-msg">🇪🇸 Redirigiendo al perfil de GitHub... Si no se redirige automáticamente, <a href="https://github.com/gualdrapa">haga clic aquí</a>.</p>
 
-    <!-- SV-SE: Svenska (Sverige) -->
-    <p>🇸🇪 Omdirigerar till GitHub-profilen... Om du inte omdirigeras automatiskt, <a href="https://github.com/gualdrapa">klicka här</a>.</p>
+    <!-- SV: Sueco -->
+    <p id="msg-sv" class="lang-msg">🇸🇪 Omdirigerar till GitHub-profilen... Om du inte omdirigeras automatiskt, <a href="https://github.com/gualdrapa">klicka här</a>.</p>
+
+    <script>
+        // Deteta o idioma do navegador e extrai os primeiros 2 caracteres (ex: 'pt-PT' passa a 'pt')
+        var userLang = navigator.language || navigator.userLanguage;
+        var shortLang = userLang.substring(0, 2).toLowerCase();
+        
+        // Lista de idiomas que traduzimos
+        var supportedLangs = ['pt', 'en', 'de', 'fr', 'es', 'sv'];
+        
+        // Se o idioma detetado estiver na lista, usamos esse. Se não, o padrão é inglês ('en')
+        var langToShow = supportedLangs.includes(shortLang) ? shortLang : 'en';
+        
+        // Mostra apenas a mensagem do idioma selecionado alterando o estilo para 'block'
+        document.getElementById('msg-' + langToShow).style.display = 'block';
+    </script>
 </body>
 </html>
